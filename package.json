@@ -1,0 +1,43 @@
+{
+  "name": "@dev-dep/vendor",
+  "version": "0.0.0",
+  "description": "Пакет с общими зависимостями для сервисов.",
+  "main": "dependencies.js",
+  "scripts": {
+    "build": "gulp clean && webpack && gulp build"
+  },
+  "publishConfig": {
+    "registry": "https://gitlab.sima-land.ru/api/v4/projects/1104/packages/npm/"
+  },
+  "repository": "ssh://git@gitlab.sima-land.ru:7888/dev-dep/dev/simaland-pages/vendor-package.git",
+  "author": "www.sima-land.ru team",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "0.19.2",
+    "classnames": "2.2.6",
+    "lodash": "4.17.15",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "react-redux": "7.1.3",
+    "redux": "4.0.5",
+    "redux-saga": "1.1.3",
+    "reduxsauce": "1.1.2",
+    "reselect": "^4.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@dev-dep/linters": "^1.0.1",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-lodash": "^3.3.4",
+    "core-js": "^3.6.4",
+    "del": "^5.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jest": "^23.6.0",
+    "eslint-plugin-react": "^7.18.3",
+    "gulp": "^4.0.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}
