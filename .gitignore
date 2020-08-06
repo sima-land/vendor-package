@@ -1,0 +1,21 @@
+.idea
+.vscode/
+
+build/
+
+# Dependencies
+/node_modules
+
+# Logs
+yarn-debug.log*
+yarn-error.log*
+
+# Optional eslint cache
+.eslintcache
+
+# Testing
+/coverage
+/reports
+
+# macos file system
+.DS_Store

@@ -1,0 +1,68 @@
+stages:
+  - prepare
+  - build
+  - deploy
+
+.node_image_template: &node_image
+  image: node:10.15.3-alpine
+
+.cache_only_pull_template: &cache_only_pull
+  cache:
+    paths:
+      - node_modules
+    policy: pull
+
+.runner_tags_template: &runner_tags
+  tags:
+    - sl-frontend
+
+.refs_production_template: &refs_production
+  only:
+    refs:
+      - tags
+
+.build_template: &build
+  stage: build
+  <<: *node_image
+  <<: *cache_only_pull
+  script:
+    - yarn build
+  artifacts:
+    paths:
+      - build
+    expire_in: 1 hrs
+  <<: *runner_tags
+
+#############################
+#      PRODUCTION           #
+#############################
+
+prepare:
+  stage: prepare
+  <<: *node_image
+  cache:
+    paths:
+      - node_modules
+  script:
+    - yarn install
+  <<: *refs_production
+  <<: *runner_tags
+
+build-production:
+  <<: *build
+  <<: *refs_production
+
+publish-package:
+  stage: deploy
+  image: node:10.15.3-alpine
+  cache:
+    paths:
+      - node_modules
+  before_script:
+    - echo //gitlab.sima-land.ru/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN} > .npmrc
+    - cd build/package/
+    - npm version $CI_COMMIT_REF_NAME
+  script:
+    - npm publish .
+  <<: *refs_production
+  <<: *runner_tags
