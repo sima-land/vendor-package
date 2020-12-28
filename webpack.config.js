@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 
-module.exports = {
+const config = {
   entry: [
     'axios',
     'classnames',
@@ -18,11 +18,6 @@ module.exports = {
     './cqc/respond',
     './cqc/request',
   ],
-  output: {
-    path: path.resolve(__dirname, `build/package`),
-    filename: `dependencies.js`,
-    library: 'simaLandVendors',
-  },
   performance: {
     maxAssetSize: 400000,
     maxEntrypointSize: 400000,
@@ -45,3 +40,24 @@ module.exports = {
     }),
   ],
 };
+
+const commonOutput = {
+  path: path.resolve(__dirname, `build/package`),
+  library: 'simaLandVendors',
+};
+
+module.exports = [{
+  mode: 'production',
+  output: {
+    ...commonOutput,
+    filename: 'production.dependencies.js',
+  },
+  ...config
+}, {
+  mode: 'development',
+  output: {
+    ...commonOutput,
+    filename: 'development.dependencies.js',
+  },
+  ...config
+}];

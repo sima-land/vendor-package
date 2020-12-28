@@ -2,7 +2,7 @@
   "name": "@dev-dep/vendor",
   "version": "0.0.0",
   "description": "Пакет с общими зависимостями для сервисов.",
-  "main": "dependencies.js",
+  "main": "production.dependencies.js",
   "scripts": {
     "build": "gulp clean && webpack && gulp build"
   },
