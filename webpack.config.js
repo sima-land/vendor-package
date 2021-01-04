@@ -59,5 +59,12 @@ module.exports = [{
     ...commonOutput,
     filename: 'development.dependencies.js',
   },
+  optimization: {
+    minimize: true,
+    removeAvailableModules: true,
+    flagIncludedChunks: true,
+    usedExports: true,
+    concatenateModules: true,
+  },
   ...config
 }];
