@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const config = {
+const baseConfig = {
   entry: [
     'axios',
     'classnames',
@@ -18,46 +18,37 @@ const config = {
     './cqc/respond',
     './cqc/request',
   ],
+  target: 'web',
   performance: {
     maxAssetSize: 400000,
     maxEntrypointSize: 400000,
   },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },
-    ],
+  output: {
+    path: path.resolve(__dirname, 'build/package'),
+    library: 'simaLandVendors',
   },
   plugins: [
     new webpack.DllPlugin({
       name: 'simaLandVendors',
-      path: path.resolve(__dirname, `./build/package/vendor-manifest.json`),
+      path: path.resolve(__dirname, './build/package/vendor-manifest.json'),
     }),
   ],
 };
 
-const commonOutput = {
-  path: path.resolve(__dirname, `build/package`),
-  library: 'simaLandVendors',
-};
-
-module.exports = [{
-  mode: 'production',
-  output: {
-    ...commonOutput,
-    filename: 'production.dependencies.js',
+module.exports = [
+  {
+    ...baseConfig,
+    mode: 'production',
+    output: {
+      ...baseConfig.output,
+      filename: 'production.dependencies.js',
+    },
+  }, {
+    ...baseConfig,
+    mode: 'development',
+    output: {
+      ...baseConfig.output,
+      filename: 'development.dependencies.js',
+    },
   },
-  ...config
-}, {
-  mode: 'development',
-  output: {
-    ...commonOutput,
-    filename: 'development.dependencies.js',
-  },
-  ...config
-}];
+];
