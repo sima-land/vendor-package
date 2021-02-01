@@ -26,7 +26,7 @@ stages:
   <<: *node_image
   <<: *cache_only_pull
   script:
-    - yarn build
+    - npm run build
   artifacts:
     paths:
       - build
@@ -44,7 +44,7 @@ prepare:
     paths:
       - node_modules
   script:
-    - yarn install
+    - npm install
   <<: *refs_production
   <<: *runner_tags
 
