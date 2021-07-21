@@ -3,13 +3,13 @@ const del = require('del');
 
 /**
  * Очищает директорию build.
- * @return {Stream} Поток NodeJS.
+ * @return {Object} Поток NodeJS.
  */
 const clean = () => del(['build']);
 
 /**
  * Добавляет данные необходимые для публикации пакета в NPM в директорию build/package.
- * @return {Stream} Поток NodeJS.
+ * @return {Object} Поток NodeJS.
  */
 const addPackageData = () => src([
   'package.json',

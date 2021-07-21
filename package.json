@@ -1,15 +1,12 @@
 {
-  "name": "@dev-dep/vendor",
+  "name": "@sima-land/vendor",
   "version": "0.0.0",
   "description": "Пакет с общими зависимостями для сервисов.",
   "main": "production.dependencies.js",
   "scripts": {
     "build": "gulp clean && webpack && gulp build"
   },
-  "publishConfig": {
-    "registry": "https://gitlab.sima-land.ru/api/v4/projects/1104/packages/npm/"
-  },
-  "repository": "ssh://git@gitlab.sima-land.ru:7888/dev-dep/dev/simaland-pages/vendor-package.git",
+  "repository": "ssh://git@github.com:sima-land/vendor-package.git",
   "author": "www.sima-land.ru team",
   "license": "MIT",
   "dependencies": {
@@ -25,6 +22,7 @@
     "reselect": "^4.0.0"
   },
   "devDependencies": {
+    "@sima-land/linters": "^1.0.12",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "webpack": "^5.19.0",
