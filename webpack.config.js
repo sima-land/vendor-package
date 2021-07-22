@@ -1,7 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const baseConfig = {
+const NAME = 'simaLandVendors';
+
+// eslint-disable-next-line require-jsdoc
+const createConfig = ({ mode }) => ({
+  mode,
+  target: 'web',
   entry: [
     'axios',
     'classnames',
@@ -18,37 +23,24 @@ const baseConfig = {
     './cqc/respond',
     './cqc/request',
   ],
-  target: 'web',
   performance: {
     maxAssetSize: 400000,
     maxEntrypointSize: 400000,
   },
   output: {
-    path: path.resolve(__dirname, 'build/package'),
-    library: 'simaLandVendors',
+    path: path.resolve(__dirname, `dist/${mode}/`),
+    library: NAME,
+    filename: 'dependencies.js',
   },
   plugins: [
     new webpack.DllPlugin({
-      name: 'simaLandVendors',
-      path: path.resolve(__dirname, './build/package/vendor-manifest.json'),
+      name: NAME,
+      path: path.resolve(__dirname, `./dist/${mode}/manifest.json`),
     }),
   ],
-};
+});
 
 module.exports = [
-  {
-    ...baseConfig,
-    mode: 'production',
-    output: {
-      ...baseConfig.output,
-      filename: 'production.dependencies.js',
-    },
-  }, {
-    ...baseConfig,
-    mode: 'development',
-    output: {
-      ...baseConfig.output,
-      filename: 'development.dependencies.js',
-    },
-  },
+  createConfig({ mode: 'production' }),
+  createConfig({ mode: 'development' }),
 ];
