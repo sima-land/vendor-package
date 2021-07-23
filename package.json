@@ -11,7 +11,7 @@
   "repository": "ssh://git@github.com:sima-land/vendor-package.git",
   "author": "www.sima-land.ru team",
   "license": "MIT",
-  "peerDependencies": {
+  "dependencies": {
     "axios": "0.21.1",
     "classnames": "2.3.1",
     "lodash": "4.17.21",

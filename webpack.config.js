@@ -7,7 +7,7 @@ const NAME = 'simaLandVendors';
 module.exports = {
   mode: 'production',
   target: 'web',
-  entry: Object.keys(pacakge.peerDependencies),
+  entry: Object.keys(pacakge.dependencies),
   performance: {
     maxAssetSize: 400000,
     maxEntrypointSize: 400000,
