@@ -1,1 +1,3 @@
-module.exports = require('@sima-land/linters/eslint');
+module.exports = {
+  extends: require.resolve('@sima-land/linters/eslint'),
+};
