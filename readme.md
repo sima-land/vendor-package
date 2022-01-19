@@ -1,4 +1,6 @@
-# Vendor package
+# Vendor package [deprecated]
+
+Проект закрыт!
 
 DLL с общими js-зависимостями frontend-сервисов в виде npm-пакета.
 
